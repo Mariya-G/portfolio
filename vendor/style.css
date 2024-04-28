@@ -47,7 +47,8 @@
   transition: background-color 0.3s linear;
 }
 
-.header__link:hover, .header__link:active {
+.header__link:hover,
+.header__link:active {
   background-color: #8ec9ff;
   color: #1d1c21;
 }
