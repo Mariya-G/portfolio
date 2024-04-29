@@ -7,30 +7,33 @@ const browserSync = require('browser-sync').create();
 function serve() {
   browserSync.init({
     server: {
-      baseDir: './dist'
-    }
+      baseDir: './dist',
+    },
   });
 }
 
 function html() {
-  return gulp.src('src/**/*.html')
-        .pipe(plumber())
-				.pipe(gulp.dest('dist/'))
-        .pipe(browserSync.reload({stream: true}));
+  return gulp
+    .src('src/**/*.html')
+    .pipe(plumber())
+    .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.reload({ stream: true }));
 }
 
 function css() {
-  return gulp.src('src/blocks/**/*.css')
-        .pipe(plumber())
-        .pipe(concat('bundle.css'))
-				.pipe(gulp.dest('dist/'))
-        .pipe(browserSync.reload({stream: true}));
+  return gulp
+    .src('src/blocks/**/*.css')
+    .pipe(plumber())
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.reload({ stream: true }));
 }
 
 function images() {
-  return gulp.src('src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}')
+  return gulp
+    .src('src/images/**/*.{png,jpg,svg,gif,ico,webp,avif}')
     .pipe(gulp.dest('dist/images'))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(browserSync.reload({ stream: true }));
 }
 
 function clean() {
