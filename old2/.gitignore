@@ -1,7 +1,6 @@
 node_modules/
 dist/
 old/
-old2/
 .DS_Store
 .idea
 .vscode
