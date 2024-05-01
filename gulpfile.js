@@ -1,8 +1,11 @@
 const gulp = require('gulp');
-const concat = require('gulp-concat-css');
+const concat = require('gulp-concat-css'); // склеивает все css в один при сборке
 const plumber = require('gulp-plumber');
-const del = require('del');
-const browserSync = require('browser-sync').create();
+const del = require('del'); // удаляет лишнее в сборке, если не находит в исходниках
+const browserSync = require('browser-sync').create(); // показывает изменения в реальном времени
+const autoprefixer = require('autoprefixer'); // подставляет вендорные префиксы для браузеров, которым они нужны
+const mediaquery = require('postcss-combine-media-query'); //способен найти все медиазапросы с одинаковым параметрами в исходниках и склеить их в один медиазапрос при сборке
+const htmlMinify = require('html-minifier'); 
 
 function serve() {
   browserSync.init({
@@ -13,18 +16,37 @@ function serve() {
 }
 
 function html() {
-  return gulp
-    .src('src/**/*.html')
-    .pipe(plumber())
-    .pipe(gulp.dest('dist/'))
-    .pipe(browserSync.reload({ stream: true }));
-}
+  const options = {
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    sortClassName: true,
+    useShortDoctype: true,
+    collapseWhitespace: true,
+      minifyCSS: true,
+      keepClosingSlash: true
+  };
+  return gulp.src('src/**/*.html')
+        .pipe(plumber())
+                .on('data', function(file) {
+              const buferFile = Buffer.from(htmlMinify.minify(file.contents.toString(), options))
+              return file.contents = buferFile
+            })
+                .pipe(gulp.dest('dist/'))
+        .pipe(browserSync.reload({stream: true}));
+} 
 
 function css() {
+  const plugins = [
+    autoprefixer(),
+    mediaquery()
+  ];
   return gulp
     .src('src/blocks/**/*.css')
     .pipe(plumber())
     .pipe(concat('bundle.css'))
+    .pipe(postcss(plugins))
     .pipe(gulp.dest('dist/'))
     .pipe(browserSync.reload({ stream: true }));
 }
