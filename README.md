@@ -1,6 +1,7 @@
 # Портфолио
 
 ## Сборка проекта на Gulp.
+## Написание проекта на шаблонизаторе pug.
 
 Склонируйте проект: `git pull git@github.com:Mariya-G/portfolio.git`
 
