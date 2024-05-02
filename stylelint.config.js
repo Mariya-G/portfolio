@@ -23,7 +23,7 @@ module.exports = {
     'no-unknown-animations': true, //Запретить неизвестные анимации.
     'selector-type-case': 'lower', //Укажите нижний регистр для селекторов типов.
     'rule-empty-line-before': 'always', //Между правилами должна быть пусая строка
-    'at-rule-empty-line-before': 'always', //Пустая строка перед at-правилами 
+    'at-rule-empty-line-before': 'always', //Пустая строка перед at-правилами
     'selector-class-pattern': null, //Укажите шаблон для селекторов классов.
     'font-family-name-quotes': 'always-where-recommended', //Требовать  кавычки для названий семейств шрифтов.
     // допустимо (a { font-family: 'Times New Roman', Times, serif; })

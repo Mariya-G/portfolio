@@ -1,4 +1,22 @@
 .baner {
-  max-width: calc(100% - 100px);
+  background-color: #1d1c21;
+  width: 100%;
+}
+
+.baner__container {
   margin: 0 auto;
+  max-width: calc(100% - 100px);
+}
+
+.baner__title {
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 40px;
+  margin: 0;
+}
+
+.baner__text {
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 35px;
 }
